@@ -1,0 +1,44 @@
+.image-uploading-container {
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.image-uploading-container .header {
+    text-align: center;
+}
+
+.image-uploading-container i {
+    font-size: 30pt;
+}
+
+.bodies-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bodies-bar {
+    margin-top: 40px;
+}
+
+.bodies-bar .bodies-container .body-card {
+    border: 1px solid #f1f1f1;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.body-card .selected-tick {
+    position: absolute;
+    margin-top: 40px;
+    margin-left: -30px;
+}
+
+.body-card img {
+    height: 400px;
+    width: 250px;
+}
+
+.body-card:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
