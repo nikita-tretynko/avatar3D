@@ -12,9 +12,6 @@ export default class App extends Component {
         super(props);
         this.requests = new Requests(this);
         this.state = {
-            rotation: 0.01,
-            color: 0xf33a6a,
-            cameraFov: 75,
             userImage: '',
             isImageLoaded: false,
             isValidated: false,

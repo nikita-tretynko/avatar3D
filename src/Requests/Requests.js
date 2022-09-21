@@ -6,12 +6,13 @@ export default class Requests {
         this.headers = new Headers();
         this.headers.append('Authorization', `Bearer ${Config.access_token}`);
         this.headers.append('Content-Type', 'application/json');
+        this.url = Config.api_url;
     }
 
     validateAvatar() {
         const { component } = this;
         const userImage = component.state.userImage;
-        const url = 'https://api.unionavatars.com/validation/head';
+        const url = this.url + '/validation/head';
         component.setState({isLoading: true}, () => {
             fetch(url, {
                 method: 'POST',
@@ -22,7 +23,7 @@ export default class Requests {
             })
                 .then(response => {
                     if (response.status === 422) {
-                        component.setState({errorMessage: 'Wrong image, please upload correct image'});
+                        component.setState({errorMessage: 'Wrong image, please upload correct image', isLoading: false});
                     }
 
                     if (response.status === 200) {
@@ -34,7 +35,7 @@ export default class Requests {
 
     getBodies() {
         const { component } = this;
-        const url = 'https://api.unionavatars.com/bodies';
+        const url = this.url + '/bodies';
         fetch(url, {
             headers: this.headers
         })
@@ -52,9 +53,8 @@ export default class Requests {
             selectedBodyId
         } = component.state;
 
-        const url = 'https://api.unionavatars.com/avatars';
+        const url = this.url + '/avatars';
         component.setState({isLoading: true}, () => {
-            console.log('loading');
            fetch(url, {
               method: 'POST',
               headers: this.headers,
