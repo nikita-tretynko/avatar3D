@@ -26,7 +26,7 @@ const ImageLoading = ({parent, onUploadedImage, onCreateAvatar, onChangeAvatarNa
                     <button type="button"
                             className="btn btn-success mt-2"
                             onClick={onCreateAvatar}
-                            disabled={!userImage && !selectedBodyId}>
+                            disabled={!userImage}>
                          Create avatar
                     </button>
                 }

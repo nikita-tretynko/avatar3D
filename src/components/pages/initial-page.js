@@ -33,9 +33,9 @@ const InitialPage = ({parent, onUploadedImage, onCreateAvatar, onChangeAvatarNam
             {
                 userImage && avatarName && !selectedBodyId && <EmptyBodyMessage/>
             }
-            <BodiesBar bodies={bodies}
-                       selectedBodyId={selectedBodyId}
-                       onSelectAvatarsBody={onSelectAvatarsBody}/>
+            {bodies.length && <BodiesBar bodies={bodies}
+                                         selectedBodyId={selectedBodyId}
+                                         onSelectAvatarsBody={onSelectAvatarsBody}/>}
         </div>
     )
 }

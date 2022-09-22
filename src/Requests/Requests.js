@@ -13,24 +13,23 @@ export default class Requests {
         const { component } = this;
         const userImage = component.state.userImage;
         const url = this.url + '/validation/head';
-        component.setState({isLoading: true}, () => {
-            fetch(url, {
-                method: 'POST',
-                headers: this.headers,
-                body: JSON.stringify({
-                    'img': userImage
-                })
-            })
-                .then(response => {
-                    if (response.status === 422) {
-                        component.setState({errorMessage: 'Wrong image, please upload correct image', isLoading: false});
-                    }
 
-                    if (response.status === 200) {
-                        component.setState({isLoading: false});
-                    }
-                });
-        });
+        fetch(url, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify({
+                'img': userImage
+            })
+        })
+            .then(response => {
+                if (response.status === 422) {
+                    component.setState({errorMessage: 'Wrong image, please upload correct image'});
+                }
+
+                if (response.status === 401) {
+                    component.setState({errorMessage: 'Token has been expired'});
+                }
+            });
     }
 
     getBodies() {
@@ -54,16 +53,28 @@ export default class Requests {
         } = component.state;
 
         const url = this.url + '/avatars';
-        component.setState({isLoading: true}, () => {
-           fetch(url, {
-              method: 'POST',
-              headers: this.headers,
-              body: JSON.stringify({
+        let attributes;
+
+        if (selectedBodyId) {
+            attributes = {
                 'name': avatarName,
                 'img': userImage,
                 'body': selectedBodyId,
                 'output_format': 'glb'
-              })
+            };
+        } else {
+            attributes = {
+                'name': avatarName,
+                'img': userImage,
+                'output_format': 'glb'
+            };
+        }
+
+        component.setState({isLoading: true}, () => {
+           fetch(url, {
+              method: 'POST',
+              headers: this.headers,
+              body: JSON.stringify(attributes)
            })
                .then(response => response.json())
                .then(avatarData => {

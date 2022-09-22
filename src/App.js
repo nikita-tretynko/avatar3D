@@ -26,7 +26,7 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        this.loadBodies();
+        //this.loadBodies();
     }
 
     loadBodies() {
@@ -90,10 +90,7 @@ export default class App extends Component {
     }
 
     render() {
-        const {
-            page,
-            isLoading
-        }  = this.state;
+        const page = this.state.page;
 
         return (
             <div>
@@ -101,7 +98,7 @@ export default class App extends Component {
                 {
                     page > 1
                         ?
-                            <button type="button" onClick={() => this.setStep(page - 1)}>Previous</button>
+                            <button type="button" onClick={() => this.setStep(this.state.page - 1)}>Previous</button>
                         :
                             ''
                 }
