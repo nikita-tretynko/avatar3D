@@ -26,7 +26,7 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        //this.loadBodies();
+        this.loadBodies();
     }
 
     loadBodies() {
