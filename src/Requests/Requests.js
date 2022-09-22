@@ -39,8 +39,12 @@ export default class Requests {
             headers: this.headers
         })
             .then(response => response.json())
-            .then(bodies => {
-                component.setState({bodies});
+            .then(response => {
+                if (response.detail) {
+                    component.setState({errorMessage: response.detail});
+                } else {
+                    component.setState({response});
+                }
             })
     }
 
