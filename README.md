@@ -7,6 +7,9 @@ Deployment intructions:
 ### npm install
 ### npm run start
 
+If you want to create production build, just run:
+### npm run build
+
 How to use:
 1. Provide valid and non-expired token to src/Config.js file. Set it as access_token variable;
 2. Provide your or your friend's selfie.
